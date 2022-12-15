@@ -1,4 +1,4 @@
-const Manager = require('./dbmanager.js')
+const Manager = require('./manager/dbmanager.js')
 const AverageForMetric = require('./analysis/AverageForMetric.js')
 const TeamsInTournament = require('./analysis/TeamsInTournament.js')
 const BestAverageForMetric = require('./analysis/BestAverageForMetric.js')
@@ -50,25 +50,15 @@ class TaskManager {
                 case (AverageForMetric.name):
                     // console.log(`AverageForMetric`)
                     returnAnalysis.push(new AverageForMetric(Manager.db, task.teamKey, task.metric))
-                    break;
+                    break
                 case (TeamsInTournament.name):
                     // console.log(`TeamsInTournament`)
                     returnAnalysis.push(new TeamsInTournament(Manager.db, task.tournamentKey))
-                    break;
+                    break
                 case (BestAverageForMetric.name):
                     // console.log(task.name)
                     returnAnalysis.push(new BestAverageForMetric(Manager.db, task.tournamentKey, task.metric))
                     break;
-                case (Overveiw.name):
-
-                    returnAnalysis.push(new Overveiw(Manager.db, task.teamNum))
-                    break;
-                
-                case(FullyScouted.name):
-                
-                    returnAnalysis.push(new FullyScouted(Manager.db, task.gameKey, task.matchNum))
-                    break;
-                
                 default:
                     console.log(`${task.name} is not a valid task`)
             }
